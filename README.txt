@@ -10,3 +10,4 @@ http://twitchapps.com/tmi/
 
 Documentation on tmi.js here
 https://www.tmijs.org/
+
