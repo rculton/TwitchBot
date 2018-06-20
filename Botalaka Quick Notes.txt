@@ -1,0 +1,26 @@
+function delay(t){
+  return new Promise(function(resolve){
+    return setTimeout(resolve, t)
+  });
+}
+function logHi(){
+  console.log('hi');
+}
+delay(2000).then(logHi);
+
+
+For promises, we need multiple functions, not functions in functions
+
+
+So we need the delay function
+Then we need the boolean flipper
+
+Then we need to use the delay to delay a second boolean flip input?
+
+We don't pass in a boolean, since it's global. Rather we need to set a per-chat waiting boolean. Each chat should be a class?
+
+If we make each chat a class, we can make new chats easily. Set up MongoDB for command storage.
+
+Each Chat
+	Has commands
+	Has permissions
