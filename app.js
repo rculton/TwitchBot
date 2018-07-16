@@ -16,7 +16,7 @@ var options ={
     password: `${apikey}`
   },
   channels: [`#TrevPerson`,"#ChaChaShakalaka", "#ChaChaBotalaka" ]
-  // channels: ["#ChaChaShakalaka", "#ChaChaBotalaka" ]
+  // channels: ["#ChaChaShakalaka", "#ChaChaBotalaka", "#legacies15", "#sumikoyamasaki" ]
 }
 
 // function wait(ms){
@@ -29,7 +29,11 @@ var client = new tmi.client(options)
 client.connect();
 
 var trevWait = false;
+var chaWait = false;
+var legWait = false;
+var samWait = false;
 var powerOn = true;
+var xenoguys = false;
 
 function toggleWait(){
   trevWait = !trevWait
@@ -37,6 +41,28 @@ function toggleWait(){
 
   setTimeout(function(){
     trevWait = !trevWait}, 3000);
+}
+
+function togglechaWait(){
+  chaWait = !chaWait
+  // console.log(trevWait)
+
+  setTimeout(function(){
+    chaWait = !chaWait}, 3000);
+}
+function togglelegWait(){
+  legWait = !legWait
+  // console.log(trevWait)
+
+  setTimeout(function(){
+    legWait = !legWait}, 3000);
+}
+function togglesamWait(){
+  samWait = !samWait
+  // console.log(trevWait)
+
+  setTimeout(function(){
+    samWait = !samWait}, 3000);
 }
 
 function togglePower(){
@@ -53,12 +79,17 @@ function togglePower(){
 client.on('chat', (channel, user, message, self) =>{
   //console.log(`Channel: ${channel} || User: ${user}`)
   if(self) return
-  if (channel == `#chachashakalaka`){
-    if(message == '!twitter' && !trevWait){
+  if (channel == `#chachashakalaka` && powerOn){
+    if(message == '!twitter' && !chaWait){
       client.say('#chachashakalaka', "twitter.com/chachashakalaka")
       
-      toggleWait()
+      togglechaWait()
     }
+    // if(message == `!multistream` && !chaWait){
+    //   client.say(`#chachashakalaka`,`http://kadgar.net/live/chachashakalaka/legacies15/sumikoyamasaki`)
+    //   togglechaWait()
+    // }
+    //http://kadgar.net/live/chachashakalaka/legacies15/sumikoyamasaki
 
     if(message == `!on` && (user.mod || user.badges.broadcaster)){
       togglePower()
@@ -71,11 +102,26 @@ client.on('chat', (channel, user, message, self) =>{
     //   client.say(`#chachashakalaka`,``)
     // }
   }
+  // if (channel == `#legacies15` && powerOn){
+  //   if(message == `!multistream` && !legWait){
+  //     client.say(`#legacies15`,`http://kadgar.net/live/chachashakalaka/legacies15/sumikoyamasaki`)
+  //     togglelegWait()    
+  //   }
+  // }
+
+
+  // if (channel == `#sumikoyamasaki` && powerOn){
+  //   if(message == `!multistream` && !samWait){
+  //     client.say(`#sumikoyamasaki`,`http://kadgar.net/live/chachashakalaka/legacies15/sumikoyamasaki`)
+  //     togglesamWait()    
+  //   }
+  // }
+
 
   if (channel == `#trevperson` && powerOn){
 
     if(message == `!info` && !trevWait){
-      client.say(`#trevperson`,`!twitter !discord !youtube !spoilers !randomizer !AnimeBoy !Omni !faq !worldrecord !info`)    
+      client.say(`#trevperson`,`!twitter !discord !youtube !spoilers !bingo !faq !worldrecord !zsrmm`)    
       toggleWait()
     }
 
@@ -103,53 +149,38 @@ client.on('chat', (channel, user, message, self) =>{
       client.say(`#trevperson`,`We now have a chat specifically for spoilers! Check the dropdown menu in the top right of the chat box.`)
       toggleWait()
     }
-    if(message == `!AnimeBoy` && !trevWait){
-      client.say(`#trevperson`,`AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy `) 
-      toggleWait()
-    }
-    if(message == `!SuperAnimeBoyVsCapcomInfinite` && !trevWait && (user.username == 'chachashakalaka') && (user.mod || user.badges.broadcaster)){
-      client.say(`#trevperson`,`AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy `)
-    } 
     if(message == `!Omni` && !trevWait){
       client.say(`#trevperson`,`hELLO wORLD cARLsMILE`)  
-      toggleWait()
-    }
-    if(message == `!omni` && !trevWait && (user.username == 'chachashakalaka') && (user.mod || user.badges.broadcaster)){
-      client.say(`#trevperson`,`@Omniprismatical Poooound Poooound Poooound`)  
       toggleWait()
     }
     if(message == `!dograce` && (user.mod || user.badges.broadcaster)){
       client.say(`#trevperson`,`https://pastebin.com/wb4TbqEA`)  
       toggleWait()
     }
-    if(message == `!boxmove` && !trevWait){
-      client.say(`#trevperson`,`📦💨`)
-      toggleWait()
-    }
     if(message == `!zsrmm` && !trevWait){
       client.say(`#trevperson`,`You can visit http://zelda.speedruns.com/mm/ for more info on Majora's Mask speedruns and glitches!`)
       toggleWait()
     }
-    if(message == `!zsr` && !trevWait){
-      client.say(`#trevperson`,`You can visit http://zelda.speedruns.com/ for more information on Zelda speedruns and glitches!`)
-      toggleWait()
-    }
+    // if(message == `!zsr` && !trevWait){
+    //   client.say(`#trevperson`,`You can visit http://zelda.speedruns.com/ for more information on Zelda speedruns and glitches!`)
+    //   toggleWait()
+    // }
     if(message == `!faq` && !trevWait){
-      client.say(`#trevperson`,`FAQ: https://pastebin.com/JHhMi0AP`)
+      client.say(`#trevperson`,`FAQ: https://pastebin.com/S9msfcby`)
       toggleWait()
     }
-    if(message == `!wr` && !trevWait){
-      client.say(`#trevperson`,`WR can be found here:http://www.speedrun.com/mm#100`)
-      toggleWait()
-    }
+    // if(message == `!wr` && !trevWait){
+    //   client.say(`#trevperson`,`TMZ smells like a butt`)
+    //   toggleWait()
+    // }
     if(message == `!Butter` && !trevWait){
       client.say(`#trevperson`,`"!toggle bingo", "!goal #", and "!forget [Username]`)
       toggleWait()
     }
-    if(message == `!Hiro` && !trevWait){
-      client.say(`#trevperson`,`CArlsMile`)
-      toggleWait()
-    }
+    // if(message == `!Hiro` && !trevWait){
+    //   client.say(`#trevperson`,`CArlsMile`)
+    //   toggleWait()
+    // }
     if(message == `$Head` && !trevWait){
       client.say(`#trevperson`,`People wanted this command to link to this stream http://twitch.tv/chachashakalaka`)
       toggleWait()
@@ -167,11 +198,11 @@ client.on('chat', (channel, user, message, self) =>{
     )
     toggleWait()
   }
-    if(message == `!emulator` && !trevWait){
-      client.say(`#trevperson`,`No, this is not emulator. Trev is using an old DS Fat with a GBA slot. You are seeing the image of his screen captured using hardware and software. His DS capture card comes from 3dscapture.com/DS`
-    )
-    toggleWait()
-  }
+  //   if(message == `!emulator` && !trevWait){
+  //     client.say(`#trevperson`,`No, this is not emulator. Trev is using an old DS Fat with a GBA slot. You are seeing the image of his screen captured using hardware and software. His DS capture card comes from 3dscapture.com/DS`
+  //   )
+  //   toggleWait()
+  // }
     // if(message == `!fm2` && !trevWait){
     //   client.say(`#trevperson`,`This is a fan-made sequel called Forbidden Memories 2. Everything you know is a lie.`)
     //   toggleWait()    
@@ -181,24 +212,21 @@ client.on('chat', (channel, user, message, self) =>{
     //   client.say(`#trevperson`,`BooIsAluring`)
     // }
 
-    if(message == `!BestPokemon` && !trevWait){
-      client.say(`#trevperson`,`It's Machamp. LOOK AT THOSE MUSCLES.`)
-    }
-    if(message == `!WorstPokemon` && !trevWait){
-      client.say(`#trevperson`,`It's Medicham. Medicham looks like melted crayons and old gum.`)
-    }
+    // if(message == `!BestPokemon` && !trevWait){
+    //   client.say(`#trevperson`,`It's Machamp. LOOK AT THOSE MUSCLES.`)
+    // }
+    // if(message == `!WorstPokemon` && !trevWait){
+    //   client.say(`#trevperson`,`It's Medicham. Medicham looks like melted crayons and old gum.`)
+    // }
     if(message == `!SpeedFacts` && !trevWait){
       client.say(`#trevperson`,`Follow https://twitter.com/RealSpeedFacts for REAL facts about REAL speed!`)
     }
-    if(message == `!PromotedStream` && !trevWait && (user.mod || user.badges.broadcaster)){
-      client.say(`#trevperson`,`TrevPerson would like you to know that Chacha is his favorite streamer of all time, go watch him at twitch.tv/zfg1`)
-    }    
-    if(message == `!Mace` && !trevWait){
-      client.say(`#trevperson`,`Who's Mace?`)
-    }
-    if(message == `!UnlimitedPogWorks` && !trevWait && (user.username == 'chachashakalaka') && (user.mod || user.badges.broadcaster)){
-      client.say(`#trevperson`,`PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp`)
-    }
+    // if(message == `!PromotedStream` && !trevWait && (user.mod || user.badges.broadcaster)){
+    //   client.say(`#trevperson`,`TrevPerson would like you to know that Chacha is his favorite streamer of all time, go watch him at twitch.tv/zfg1`)
+    // }    
+    // if(message == `!Mace` && !trevWait){
+    //   client.say(`#trevperson`,`Who's Mace?`)
+    // }
     if(message == `!worldrecord` && !trevWait){
       client.say(`#trevperson`,`World Record is 4:20:69 by ZFG`)
     }
@@ -208,6 +236,67 @@ client.on('chat', (channel, user, message, self) =>{
     if(message == `!github` && !trevWait){
       client.say(`#trevperson`,`You can find ChaCha's Github here: https://github.com/rculton/`)
     }
+
+
+    if(message == `!xeno` && (user.mod || user.badges.broadcaster)){
+      xenoguys = !xenoguys
+    }
+
+    if(message == `!time` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`It's Reyn Time`)
+    }
+    if(message == `!Vangarre` && !trevWait && xenoguys){
+        client.say(`#trevperson`,`Should have VanGUARDED`)
+    }
+    if(message == `!Vandham` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`He got the VandSLAM`)
+    }
+    if(message == `!Fiora` && !trevWait && xenoguys){
+        client.say(`#trevperson`,`We don't miss her. It was very rude of her to die.`)
+      }
+    // if(message == `!Fiora` && !trevWait && xenoguys){
+    //   client.say(`#trevperson`,`MrDestructoid BEEP BOOP`)
+    // }
+    if(message == `!Blossom` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`Born in a world of strife! Against the odds! We choose to fight! BLOSSOM DANCE! SwiftRage `)
+    }
+    if(message == `!Dunban` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`Dunban, the DunMAN, gonna give them, the DunSLAM`)
+    }
+    if(message == `!Riki` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`You can donate funds here: https://streamlabs.com/trevperson`)
+    }
+    if(message == `!Shulk` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`He's the leader of the bunch. You know him well.`)
+    }
+    if(message == `!Alvis` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`and the Chipmunks`)
+    }
+    if(message == `!Melia` && !trevWait && xenoguys){
+      client.say(`#trevperson`,`More like SMELLia. HA, GOTEEM!`)
+    }
+
+
+
+    if(message == `!B` && !trevWait){
+      client.say(`#trevperson`,`Tre🅱️Person`)
+      toggleWait()
+    }
+
+    if(message == `!AnimeBoy` && !trevWait){
+      client.say(`#trevperson`,`AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy `) 
+      toggleWait()
+    }
+    if(message == `!SuperAnimeBoyVsCapcomInfinite` && !trevWait && (user.username == 'chachashakalaka') && (user.mod || user.badges.broadcaster)){
+      client.say(`#trevperson`,`AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy AnimeBoy `)
+    }
+    if(message == `!UnlimitedPogWorks` && !trevWait && (user.username == 'chachashakalaka') && (user.mod || user.badges.broadcaster)){
+      client.say(`#trevperson`,`PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp PogChamp`)
+    }
+    if(message == `!OceanMan` && !trevWait && (user.username == 'chachashakalaka') && (user.mod || user.badges.broadcaster)){
+      client.say(`#trevperson`,`🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊🌊`)
+    } 
+
     // message response template
     // if(message == `!` && !trevWait){
     //   client.say(`#trevperson`,``)
